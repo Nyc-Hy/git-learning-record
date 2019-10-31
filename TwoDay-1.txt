@@ -1,28 +1,18 @@
 git status命令可以让我们时刻掌握仓库当前的状态
 git diff顾名思义就是查看difference 查看哪里被修改了
-
-
 git log命令显示从最近到最远的提交日志 如果嫌输出信息太多，看得眼花缭乱的，可以试试加上--pretty=oneline参数
-
 你看到的一大串类似1094adb...的是commit id
-
 Git必须知道当前版本是哪个版本，在Git中，用HEAD表示当前版本，也就是最新的提交1094adb...（注意我的提交ID和你的肯定不一样），上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100。
-
 把当前版本回退到上一个版本 可以使用git reset命令  例子 git reset --hard head^
-
 返回了后想要再回去最新的版本 只要没关闭窗口可以去找前面的commit id 然后用 git reset --hard 1094a 来返回  commit id 不用打完 系统会自动识别
-
 //Git的版本回退速度非常快，因为Git在内部有个指向当前版本的HEAD指针
-
-
 Git提供了一个命令git reflog用来记录你的每一次命令
 
 
 工作区（Working Directory）
-
 就是你在电脑里能看到的目录，比如我的git learning record文件夹就是一个工作区
-版本库（Repository）
 
+版本库（Repository）
 工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。
 Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支master，以及指向master的一个指针叫HEAD。
 我们创建Git版本库时，Git自动为我们创建了唯一一个master分支，所以，现在，git commit就是往master分支上提交更改
@@ -30,3 +20,18 @@ git add命令实际上就是把要提交的所有修改放到暂存区（Stage�
 
 
 git是跟踪文件如何修改的  每次修改 如果不用git add添加到暂存区 那就不会加入到commit中 如果你添加但是没有提交再修改 此刻commit保存的是你添加时的数据 你的修改并没有提交
+
+
+命令git checkout -- readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：
+一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；
+一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
+总之，就是让这个文件回到最近一次git commit或git add时的状态。
+
+git checkout -- file命令中的--很重要，没有--，就变成了“切换到另一个分支”的命令
+命令git reset HEAD <file>可以把暂存区的修改撤销掉（unstage），重新放回工作区
+git reset命令既可以回退版本，也可以把暂存区的修改回退到工作区。当我们用HEAD时，表示最新的版本
+
+
+rm  文件名命令删除文件
+从版本库删除文件 git rm
+git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”
