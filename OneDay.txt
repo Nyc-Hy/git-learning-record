@@ -1,0 +1,26 @@
+mkdir 文件名 -----新建文件夹
+cd 文件名 -----进入文件夹
+pwd 文件夹路径 ----显示当前命令
+
+
+git init Initialized empty Git repository in 路径/.git/     ----把这个目录变成git可以管理的仓库
+如果你没有看到.git目录，那是因为这个目录默认是隐藏的，用ls -ah命令就可以看见。
+还没有就是没成功
+
+使用Windows的童鞋要特别注意：
+
+千万不要使用Windows自带的记事本编辑任何文本文件。原因是Microsoft开发记事本的团队使用了一个非常弱智的行为来保存UTF-8编码的文件，他们自作聪明地在每个文件开头添加了0xefbbbf（十六进制）的字符，你会遇到很多不可思议的问题，比如，网页第一行可能会显示一个“?”，明明正确的程序一编译就报语法错误，等等，都是由记事本的弱智行为带来的。建议你下载Notepad++代替记事本，不但功能强大，而且免费！记得把Notepad++的默认编码设置为UTF-8 without BOM即可：
+
+
+新建文件在这个目录 可以是txt 代码等
+然后用命令git add告诉Git，把文件添加到仓库：
+第二步，用命令git commit告诉Git，把文件提交到仓库：$ git commit -m "wrote a readme file"
+简单解释一下git commit命令，-m后面输入的是本次提交的说明，可以输入任意内容 （如果要输入中文要把编码改成zh_cn UFT-8）
+为什么Git添加文件需要add，commit一共两步呢？因为commit可以一次提交很多文件，所以你可以多次add不同的文件，比如：
+
+$ git add file1.txt
+$ git add file2.txt file3.txt
+$ git commit -m "add 3 files."
+
+
+个人操作实例  直接找地方新建文件夹>>>打开文件夹>>>右击空白打开 GTI GUI HEAE >>> create empty repository
